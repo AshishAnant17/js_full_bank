@@ -10,7 +10,7 @@ let isbooleanvalue=true
 let state
 
 //primitive datatype
-//integer max value is 2 power of 53
+//number max value is 2 power of 53
 //for bigger int you should use bigint working for google and microsoft
 //string should be in "" for better understanding
 //boolean =true/false
