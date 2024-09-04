@@ -58,5 +58,5 @@ console.log(Object.values(tinderuser))
 
 console.log(Object.entries(tinderuser))
 //it basically divides it in an array [ [ 'id', '21bcb0174' ], [ 'name', 'Ashish' ], [ 'isLoggedin', true ] ]
-
+//use tinderuser.hasOwnProperty('isLoggedin')
 
