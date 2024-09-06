@@ -30,5 +30,17 @@ const myArray=[
     },
 ]
 myArray.forEach((item)=>{
-    console.log(item.languageName)
+    //console.log(item.languageName)
 })
+//you can also traverse by using a function name 
+function printMe(item){
+    console.log(item);
+}
+    
+//coding.forEach(printMe)
+
+//forEach can carry a lot of thing 
+coding.forEach( (item, index, arr)=> {
+        console.log(item, index, arr);
+} )
+
