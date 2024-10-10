@@ -44,3 +44,46 @@ buttons.forEach(function (button) {
 
 ```
 
+solution code 2 bmi calculator
+```javaScript
+const form = document.querySelector('form');
+//this use case will give you empty results
+//const height=parseInt(document.querySelector('#height').value);
+
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+  height = parseInt(document.querySelector('#height').value);
+  weight = parseInt(document.querySelector('#weight').value);
+  results = document.querySelector('#results');
+
+  //check the validity of height and weight
+
+  if (height === '' || height < 0 || isNaN(height)) {
+    results.innerHTML = `please enter valid height ${height}`;
+  }else
+  if (weight === '' || weight < 0 || isNaN(weight)) {
+    results.innerHTML = `please enter valid weight ${weight}`;
+  }else{
+    const bmi=(weight)/((height*height)/10000).toFixed(2);
+    results.innerHTML=`<span> ${bmi} </span>`;
+  }
+});
+```
+solution code 3 Time
+``` javaScript
+const clock=document.querySelector('#clock')
+//pahle to hum directly current time ko print kar skte hai 
+//let date=new Date();
+//console.log(date.toLocaleTimeString()); iska output console me aayega 
+
+//current time lagatar dikhta rhega but we need to set interval taki set ho jaye arr ekk time ke baad hh time dikhe 
+
+
+setInterval(function(){
+  let date=new Date();
+  clock.innerHTML=date.toLocaleTimeString();
+},1000);
+```
+
+
+
