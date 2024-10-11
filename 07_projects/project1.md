@@ -84,6 +84,128 @@ setInterval(function(){
   clock.innerHTML=date.toLocaleTimeString();
 },1000);
 ```
+``` solution 4th guess a number
+```javaScript
+//first thing is we will generate random number that will stay with my game to match and give result
+let randomnumber = parseInt(Math.random() * 100 + 1);
+
+//second,we will go for button and input from user
+
+const submit = document.querySelector('#subt');
+const userinput = document.querySelector('#guessField');
+//for previous guess
+
+const guessslot = document.querySelector('.guesses');
+
+//attempts left
+
+const remaining = document.querySelector('.lastResult');
+
+//now to check whether input is low or high
+
+const lowOrHigh = document.querySelector('.lowOrHi');
+
+//to startover
+const startover = document.querySelector('.resultParas');
+
+const p = document.createElement('p');
+
+let prevguess = [];
+
+let numguess = 1;
+
+let playgame = true;
+
+//now functions
+//First thing we will check whether he is ready to play or not
+
+if (playgame) {
+  submit.addEventListener('click', function (e) {
+    e.preventDefault();
+    const guess = parseInt(userinput.value);
+    console.log(guess);
+    validateGuess(guess);
+  });
+}
+//1st function validateGuess
+
+function validateGuess(guess) {
+  if (isNaN(guess)) {
+    alert('please enter a valid number');
+  } else if (guess < 1) {
+    alert('PLease enter a number more than 1');
+  } else if (guess > 100) {
+    alert('please enter a number less than 100');
+  } else {
+    prevguess.push(guess);
+    //abb check karenge kya iska limit pura ho gya hai yaa bach hua hai
+    if (numguess == 11) {
+      displayGuess(guess);
+      displayMessage(`Game Over,Correct Guess Was ${randomnumber}`);
+      endGame();
+    } else {
+      displayGuess(guess);
+      checkGuess(guess);
+    }
+  }
+}
+
+function checkGuess(guess) {
+  if (guess === randomnumber) {
+    displayMessage('Hurrah,correct guess');
+    endGame();
+  } else if (guess < randomnumber) {
+    displayMessage(`Number is too low`);
+  } else {
+    displayMessage(`Number is too high`);
+  }
+}
+
+function displayMessage(message) {
+  lowOrHigh.innerHTML = `<h2>${message}</h2>`;
+}
+
+function displayGuess(guess) {
+  //ye tin chz karega pahle user input wala boc ko khali kar dega taki user input daal sake
+  //2.guess array me number ko daal dega taki check
+  //3.remaining attemps ko update karega
+  userinput.value = '';
+  guessslot.innerHTML += `${guess} ,`;
+
+  numguess++;
+
+  remaining.innerHTML = `${11 - numguess}`;
+}
+
+function endGame() {
+  userinput.value = '';
+  userinput.setAttribute('disabled', '');
+  //ab hamko ekk naya button banana hai jisse ham kuch vv add kar pay e
+
+  p.classList.add('button');
+  p.innerHTML = `<h2 id="NewGame">Start a New Game</h2>`;
+  startover.appendChild(p);
+  playgame = false;
+  newGame();
+}
+
+function newGame() {
+  //first thing is kk newgame wala button jo add kiya hai css ss usko activate karo
+
+  const newGameButton = document.querySelector('#NewGame');
+  newGameButton.addEventListener('click', function (e) {
+    randomnumber = parseInt(Math.random() * 100 + 1);
+    prevguess = [];
+    numguess = 1;
+
+    guessslot.innerHTML = '';
+    remaining.innerHTML = `${11 - numguess}`;
+    userinput.removeAttribute('disabled');
+    startover.removeChild(p);
+    playgame = true;
+  });
+}
+```
 
 
 
