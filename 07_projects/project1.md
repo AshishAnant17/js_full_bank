@@ -206,6 +206,81 @@ function newGame() {
   });
 }
 ```
+```project 5 unlimited color
+``` javascript
+//first thing is that you have to generate unlimited random colors in the background so we will work on that 
+const randomColor=function(){
+  const hex="0123456789ABCDEF";
+  let color="#";
+  //now you have to generate 6 digit of hexagon for radom color so the best way is to add elements to color and return the hexa value of that color 
+  for(let i=0;i<6;i++){
+    //now you need to take the random of that hex component to get the random color 
+    color+=hex[Math.floor(Math.random()*16)];
+  }
+  //at last return color to randomColor fucntion 
+  return color;
+
+}
+//now you have generated random color 
+//now you need to attach it to the start and stop button 
+//ek interval ke baad color change hona chahiye so you need to use setInterval() function 
+let intervalid=null;
+function startChangingColor(){
+  //check whether intervalid==null
+  if(intervalid==null){
+    //intervalid=setinterval function ko use karke 
+    intervalid=setInterval(changeBgColor,1000);
+  }
+  //now we need to define the function changeBgColor
+  function changeBgColor(){
+    document.body.style.background=randomColor();
+  }
+
+  //now we need to maek a function to stop changing color
+}
+function stopChangingColor(){
+  //setInterval ka opposite hota hai clearInterval arr clear interval ko ekk input chahiye hota hai kk konsa interval ko rokna hai thats why we have created a variable named intervalId
+  clearInterval(intervalid);
+  //now to qualify for the edge case we will make the intervalId=null
+  intervalid=null; 
+}
+//now we need to work on start and stop button 
+//select them and attach them to the code 
+
+document.querySelector("#start").addEventListener('click',startChangingColor);
+document.querySelector("#stop").addEventListener('click',stopChangingColor);
+
+
+```
+keyboard check 
+```javascript
+//console.log('Project 5');
+//this project is about if you type the any button of the keyboard a table will come on the screen to show you the name of the code and digit of the code and the symbol of the code 
+
+//so the first thing is we will select the insert id so we can add the table to its inner html and it should come on screen 
+//pure window me hh add add karna hai 
+window.addEventListener('keydown',(e)=>{
+  //th=table header td=table data
+  insert.innerHTML = `
+    <div class='color'> 
+  <table>
+  <tr>
+    <th>key</th>
+    <th>keycode</th>
+    <th>Code</th>
+  </tr>
+  <tr>
+    <td>${e.key==" "?'space':e.key}</td>
+    <td>${e.keyCode}</td>
+    <td>${e.code}</td>
+  </tr>
+  
+</table>
+</div>
+  `;
+
+})
+```
 
 
 
